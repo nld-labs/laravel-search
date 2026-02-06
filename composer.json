@@ -1,0 +1,43 @@
+{
+    "name": "nld-labs/laravel-search",
+    "description": "Search trait for Laravel Eloquent models with multiple search strategies.",
+    "type": "library",
+    "license": "MIT",
+    "version": "0.1.0",
+    "keywords": [
+        "laravel",
+        "eloquent",
+        "search"
+    ],
+    "autoload": {
+        "psr-4": {
+            "NLD\\Search\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "NLD\\Search\\Tests\\": "tests/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Vitauts Stočka",
+            "email": "vs@vits.lv"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=8.2",
+        "illuminate/database": "^11.0|^12.0"
+    },
+    "require-dev": {
+        "pestphp/pest": "^4.3",
+        "laravel/pint": "^1.27",
+        "orchestra/testbench": "^10.0"
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    }
+}
