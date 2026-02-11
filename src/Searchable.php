@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace NLD\Search;
 
-trait Search
+trait Searchable
 {
     /**
      * Scope a query to search for a term across specified fields.
@@ -63,15 +63,15 @@ trait Search
      * Return array of searchable fields with search strategies.
      *
      * Converts field configuration into a normalized array mapping field names to search strategies.
-     * Falls back to model's $searchFields property if no fields are provided.
+     * Falls back to model's $searchable property if no fields are provided.
      *
      * @param  array<string, SearchStrategy>|string  $fields  Fields to search in with optional strategies
      * @return array<string, SearchStrategy> Normalized array of field names to search strategies
      */
     protected function getSearchFields(string|array $fields = []): array
     {
-        if (empty($fields) && property_exists($this, 'searchFields') && ! empty($this->searchFields)) {
-            $fields = $this->searchFields;
+        if (empty($fields) && property_exists($this, 'searchable') && ! empty($this->searchable)) {
+            $fields = $this->searchable;
         }
 
         if (empty($fields)) {

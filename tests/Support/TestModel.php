@@ -3,11 +3,11 @@
 namespace NLD\Search\Tests\Support;
 
 use Illuminate\Database\Eloquent\Model;
-use NLD\Search\Search;
+use NLD\Search\Searchable;
 
 class TestModel extends Model
 {
-    use Search;
+    use Searchable;
 
     protected $table = 'test_models';
 

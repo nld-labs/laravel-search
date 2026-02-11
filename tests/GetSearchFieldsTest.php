@@ -1,13 +1,13 @@
 <?php
 
 use Illuminate\Database\Eloquent\Model;
-use NLD\Search\Search;
+use NLD\Search\Searchable;
 use NLD\Search\SearchStrategy;
 
 it('returns empty array when no model properties or fields are given', function () {
     $model = new class extends Model
     {
-        use Search;
+        use Searchable;
     };
 
     $fields = invokePrivateMethod($model, 'getSearchFields');
@@ -19,9 +19,9 @@ it('returns empty array when no model properties or fields are given', function 
 it('returns fields array from model properties', function () {
     $model = new class extends Model
     {
-        use Search;
+        use Searchable;
 
-        protected $searchFields = [
+        protected $searchable = [
             'model' => SearchStrategy::EXACT,
             'second' => SearchStrategy::IN_WORDS,
         ];
@@ -38,9 +38,9 @@ it('returns fields array from model properties', function () {
 it('returns received fields possibly overriding model properties', function () {
     $model = new class extends Model
     {
-        use Search;
+        use Searchable;
 
-        protected $searchFields = 'model';
+        protected $searchable = 'model';
     };
 
     $fields = invokePrivateMethod($model, 'getSearchFields', [
@@ -57,7 +57,7 @@ it('returns received fields possibly overriding model properties', function () {
 it('builds fields array from string using default strategy', function () {
     $model = new class extends Model
     {
-        use Search;
+        use Searchable;
     };
 
     $fields = invokePrivateMethod($model, 'getSearchFields', ' first , second');
@@ -71,7 +71,7 @@ it('builds fields array from string using default strategy', function () {
 it('applies default strategy to fields with no strategy', function () {
     $model = new class extends Model
     {
-        use Search;
+        use Searchable;
     };
 
     $fields = invokePrivateMethod($model, 'getSearchFields', [
@@ -88,7 +88,7 @@ it('applies default strategy to fields with no strategy', function () {
 it('uses default strategy from model property', function () {
     $model = new class extends Model
     {
-        use Search;
+        use Searchable;
 
         protected $searchStrategy = SearchStrategy::IN_WORDS;
     };

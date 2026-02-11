@@ -17,15 +17,15 @@ composer require nld-labs/laravel-search
 
 ## Quick Start
 
-Add the `Search` trait to any Eloquent model:
+Add the `Searchable` trait to any Eloquent model:
 
 ```php
-use NLD\Search\Search;
+use NLD\Search\Searchable;
 use NLD\Search\SearchStrategy;
 
 class Post extends Model
 {
-    use Search;
+    use Searchable;
 }
 ```
 
@@ -93,14 +93,14 @@ Post::search('term', [
 You can set default searchable fields and a default strategy directly on the model:
 
 ```php
-use NLD\Search\Search;
+use NLD\Search\Searchable;
 use NLD\Search\SearchStrategy;
 
 class Post extends Model
 {
-    use Search;
+    use Searchable;
 
-    protected array $searchFields = [
+    protected array $searchable = [
         'title' => SearchStrategy::START_OF_WORDS,
         'body'  => SearchStrategy::IN_WORDS,
     ];
@@ -110,7 +110,7 @@ class Post extends Model
 }
 ```
 
-When `$searchFields` is defined, calling `search` without fields uses it automatically:
+When `$searchable` is defined, calling `search` without fields uses it automatically:
 
 ```php
 Post::search('term')->get();

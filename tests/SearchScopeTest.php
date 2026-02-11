@@ -2,12 +2,12 @@
 
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Database\Schema\Blueprint;
-use NLD\Search\Search;
+use NLD\Search\Searchable;
 use NLD\Search\SearchStrategy;
 use NLD\Search\Tests\Support\TestModel;
 
 it('uses Search trait', function () {
-    expect(Search::class)
+    expect(Searchable::class)
         ->toBeIn(class_uses_recursive(TestModel::class));
 });
 
